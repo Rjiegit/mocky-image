@@ -39,5 +39,6 @@ export class ImageController {
 
     res.setHeader('Content-Type', `image/${query.format || 'png'}`);
     res.send(buffer);
+    return;
   }
 }
