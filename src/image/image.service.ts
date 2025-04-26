@@ -1,5 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import sharp from 'sharp';
+import * as sharpModule from 'sharp';
+import type { Sharp } from 'sharp';
+
+// 創造一個型別安全的 createSharp 函式
+const createSharp = (input: Buffer | string): Sharp => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+  const possibleSharp = (sharpModule as any).default ?? sharpModule;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  return possibleSharp(input) as Sharp;
+};
 
 @Injectable()
 export class ImageService {
@@ -19,6 +28,6 @@ export class ImageService {
       </svg>
     `;
 
-    return await sharp(Buffer.from(svgText)).toFormat(format).toBuffer();
+    return await createSharp(Buffer.from(svgText)).toFormat(format).toBuffer();
   }
 }
