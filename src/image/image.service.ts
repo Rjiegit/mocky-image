@@ -20,9 +20,9 @@ export class ImageService {
     format: 'png' | 'jpeg' | 'webp' = 'png',
   ): Promise<Buffer> {
     const svgText = `
-      <svg width="${width}" height="${height}">
+      <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
         <rect width="100%" height="100%" fill="${bgColor}" />
-        <text x="50%" y="50%" font-size="24" dominant-baseline="middle" text-anchor="middle" fill="#000">
+        <text x="50%" y="50%" font-size="24" font-family="sans-serif" dominant-baseline="middle" text-anchor="middle" fill="#000">
           ${text || `${width}x${height}`}
         </text>
       </svg>
