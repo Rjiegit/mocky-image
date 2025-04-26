@@ -19,6 +19,11 @@ export class ImageService {
       </svg>
     `;
 
-    return await sharp(Buffer.from(svgText)).toFormat(format).toBuffer();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return
+    return await (sharp as any)(Buffer.from(svgText))
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      .toFormat(format)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      .toBuffer();
   }
 }
