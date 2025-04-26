@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as sharp from 'sharp';
+import sharp from 'sharp';
 
 @Injectable()
 export class ImageService {
@@ -19,11 +19,6 @@ export class ImageService {
       </svg>
     `;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return
-    return await (sharp as any)(Buffer.from(svgText))
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      .toFormat(format)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      .toBuffer();
+    return await sharp(Buffer.from(svgText)).toFormat(format).toBuffer();
   }
 }
