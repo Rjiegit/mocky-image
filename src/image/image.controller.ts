@@ -1,14 +1,14 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
-import { ImageService } from './image.service';
 import { GenerateImageDto } from './dto/generate-image.dto';
 import { Response } from 'express';
 import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ErrorResponseDto } from './dto/error-response.dto';
+import { ImagePureimageService } from './image-pureimage.service';
 
 @ApiTags('Image')
 @Controller('image')
 export class ImageController {
-  constructor(private readonly imageService: ImageService) {}
+  constructor(private readonly imageService: ImagePureimageService) {}
 
   @Get()
   @ApiOkResponse({ description: '成功產生圖片' })

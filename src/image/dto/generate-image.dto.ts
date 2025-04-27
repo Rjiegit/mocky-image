@@ -34,5 +34,5 @@ export class GenerateImageDto {
   @Matches(/^(png|jpeg|webp)$/i, {
     message: 'format 必須是 png, jpeg, 或 webp',
   })
-  format?: 'png' | 'jpeg' | 'webp';
+  format?: 'png' | 'jpeg';
 }
